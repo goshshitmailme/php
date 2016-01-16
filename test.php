@@ -17,4 +17,3 @@ $int = (float)"43.54";
 echo $int;
 
 //var_dump($text);
-//
