@@ -36,7 +36,13 @@ $serverLangs = [
     "php",
     "python",
     "ruby",
+    "fdsfd"
 ];
+// $serverLangs[] = "ruby";
+// $serverLangs[] = "JavaScript";
+//unset($serverLangs[3]);
+//die("fdfdf");
+
 $clientLangs = [
     "JavaScript",
 ];
@@ -45,31 +51,63 @@ $langs = [
     "server" => $serverLangs,
     "client" => $clientLangs
 ];
+//$langs["server"][]="ruby";
 
 //var_dump($langs);
 //print $langs[0][2];
-$c = count($langs["server"]);
-for ($i = 0, $c = count($langs["server"]); $i < $c; $i++) {
-//    print $langs["server"][$i];
+// $c = count($langs["server"]);
+// for ($i = 0, $c = count($langs["server"]); $i < $c; $i++) {
+// //    print $langs["server"][$i];
 
-}
+// }
 
-foreach ($langs as $key => $lang) {
-    for ($i = 0, $c = count($langs[$key]); $i < $c; $i++) {
-//        print $lang[$i];
+// foreach ($langs as $key => $lang) {
+//     for ($i = 0, $c = count($langs[$key]); $i < $c; $i++) {
+// //        print $lang[$i];
+//     }
+// }
+
+// print "<ul>" . "\n";
+// foreach ($langs as $langGroup) {
+//     foreach ($langGroup as $lang) {
+// //        print "<li>";
+// //        print $lang;
+// //        print "</li>";
+// //        print "<li>" . $lang . "</li>";
+//         print "\t<li>{$lang}</li>\n";
+// //        print '<li>$lang</li>';
+
+//     }
+// }
+// print "</ul>";
+//var_dump($langs);
+//print_r($langs);
+
+
+
+// foreach ($langs as $langGroup) {
+//     foreach ($langGroup as $lang) {
+// //        print "<li>";
+// //        print $lang;
+// //        print "</li>";
+// //        print "<li>" . $lang . "</li>";
+//         print "\t<li>{$lang}</li>\n";
+// //        print '<li>$lang</li>';
+
+//     }
+// }
+// array_merge();
+?>
+
+<ul>
+    <?php 
+    foreach ($langs as $langGroup) {
+        foreach ($langGroup as $index => $lang) :
+    ?>
+            <li<?php if ($index % 2) :?> style="background-color: #999"<?php endif; ?>><?php print $lang; ?></li>
+    <?php 
+        endforeach;
     }
-}
+    ?>
+</ul>
 
-print "<ul>" . "\n";
-foreach ($langs as $langGroup) {
-    foreach ($langGroup as $lang) {
-//        print "<li>";
-//        print $lang;
-//        print "</li>";
-//        print "<li>" . $lang . "</li>";
-        print "\t<li>{$lang}1</li>\n";
-//        print '<li>$lang</li>';
-
-    }
-}
-print "</ul>";
