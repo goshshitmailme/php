@@ -1,36 +1,17 @@
 <?php
 
-class User
-{
-    private $name = "Guest";
-    public $surname;
-    
-    public function getFullName()
-    {
-       return $this->name . " " . $this->surname;
-    }
-    
-    public function hello($count = null) 
-    {
-        if ($count === null) {
-            $count = rand(1, 10);
-        }
-        return "Hell" . str_repeat("o", $count) . " " . $this->getFullName();
-    }
+define('SECURITY', true);
 
-    public function getName()
-    {
-        return $this->name;
-    }
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-}
+require_once __DIR__ . "/src/User.php";
+//require_once "/src/User.php";
+
+//var_dump(__DIR__);
+//PHP_EOL = "\n"
+
 
 $user = new User();
 // var_dump($user);
-$user->setName("Max");
+$user->setName("Max2");
 // $user->surname = "Pain";
 // // print $user->name . " " . $user->surname;
 // // print $user->getFullName();
