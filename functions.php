@@ -1,5 +1,7 @@
 <?php
 
+$text = "ff";
+
 function hello($name = "guest", $count = null) {
     if ($count ==+ null) {
         $count = rand(1, 10);
