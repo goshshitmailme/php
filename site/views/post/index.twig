@@ -1,13 +1,10 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'layout.twig' %}
+{% block content %}
     <h1>BLOG</h1>
-    {{ foreach  }}
-    <p>Post created at {{ post.created_at|date("m/d/Y") }}</p>
-<p>{{ post.content }}</p>
-</body>
-</html>
+    {% for p in posts %}
+        {{ parent() }}
+        <p>id: <a href="{{ path('post_show', {id: p.id}) }}">{{ p.id }}</a></p>
+    <p>Post created at {{ p.created_at|date("m/d/Y") }}</p>
+    <p>{{ p.content }}</p>
+    {% endfor %}
+{% endblock %}

@@ -8,12 +8,12 @@ use Silex\Application as App;
 class PostController
 {
     public function indexAction(App $app){
-       $posts = $app['db']->fetchAll('SELECT * FROM post WHERE published = 1');
-var_dump($posts);
+       $posts = $app['db']->fetchAll('SELECT * FROM post');
+//var_dump($posts);
         /** @var \Twig_Environment $twig */
         $twig = $app['twig'];
         return $twig->render('post/index.twig', array(
-            'post' => $posts,
+            'posts' => $posts,
         ));
     }
 
