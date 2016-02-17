@@ -13,13 +13,17 @@ class PostController
     /** @var \Twig_Environment $twig */
     private $twig;
 
-    private function init(App $app) {
+    /** @var App  */
+    private $app;
+
+    public function __construct(App $app) {
+        $this->app = $app;
         $this->db = $app['db'];
         $this->twig = $app['twig'];
     }
 
-    public function indexAction(App $app){
-        $this->init($app);
+    public function indexAction(){
+//        $this->init($app);
 
        $posts = $this->db->fetchAll('SELECT * FROM post');
 //var_dump($posts);
@@ -30,8 +34,8 @@ class PostController
         ));
     }
 
-    public function showAction(App $app, $id){
-        $this->init($app);
+    public function showAction($id){
+//        $this->init($app);
 
 //        echo get_class($db);
 
@@ -46,7 +50,7 @@ class PostController
             "id"=>$id,
         ]);
         if (!$post) {
-            $app->abort(404,"Post ID:$id not found");
+            $this->app->abort(404,"Post ID:$id not found");
         }
 
 //var_dump($post);
