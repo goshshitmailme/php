@@ -7,24 +7,37 @@ use Silex\Application as App;
 
 class PostController
 {
+    /** @var Connection $db */
+    private $db;
+
+    /** @var \Twig_Environment $twig */
+    private $twig;
+
+    private function init(App $app) {
+        $this->db = $app['db'];
+        $this->twig = $app['twig'];
+    }
+
     public function indexAction(App $app){
-       $posts = $app['db']->fetchAll('SELECT * FROM post');
+        $this->init($app);
+
+       $posts = $this->db->fetchAll('SELECT * FROM post');
 //var_dump($posts);
-        /** @var \Twig_Environment $twig */
-        $twig = $app['twig'];
-        return $twig->render('post/index.twig', array(
+
+
+        return $this->twig->render('post/index.twig', array(
             'posts' => $posts,
         ));
     }
 
     public function showAction(App $app, $id){
-        /** @var Connection $db */
-        $db = $app['db'];
+        $this->init($app);
+
 //        echo get_class($db);
 
 //        SQL Injection
 //        $post = $db->fetchAssoc("SELECT * FROM post WHERE id = ?", [$id]);
-        $post = $db->fetchAssoc("
+        $post = $this->db->fetchAssoc("
     SELECT * FROM post
     WHERE 1
     AND id = :id
