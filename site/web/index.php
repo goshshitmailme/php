@@ -5,6 +5,9 @@ require_once __DIR__.'/../vendor/autoload.php';
 //require_once __DIR__.'/../src/Controller/PostController.php';
 require_once __DIR__.'/../parameters.php';
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 $app = new Silex\Application();
 $app['debug'] = true;
 
@@ -48,7 +51,10 @@ $app->get('/admin/blog', 'admin.post.controller:indexAction')
 $app->get('/admin/edit/{id}', 'admin.post.controller:editAction')
     ->assert('id','[0-9]+')
     ->bind('admin_post_edit');
-//    ->method('GET');
+
+$app->post('/admin/edit/form/', 'admin.post.controller:editFormAction')
+    ->bind('admin_post_edit_form')
+    ->method('POST');
 
 $app->run();
 

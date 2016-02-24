@@ -2,10 +2,13 @@
 {% block content %}
     <h1>ADMIN BLOG</h1>
     {% for p in posts %}
-        {{ parent() }}
+        {#{{ parent() }}#}
+        <hr>
         <p>id: <a href="{{ path('post_show', {id: p.id}) }}">{{ p.id }}</a></p>
+        <p>Header: {{ p.heading }}</p>
         <p><a href="{{ path('admin_post_edit', {id: p.id}) }}">EDIT</a></p>
-    <p>Post created at {{ p.created_at|date("m/d/Y") }}</p>
-    <p>{{ p.content }}</p>
+        <p>Post created at {{ p.created_at|date("m/d/Y") }}</p>
+        <p>{{ p.content }}</p>
+        <input type="checkbox" {% if p.published %}checked{% endif %} disabled>Published<br>
     {% endfor %}
 {% endblock %}

@@ -41,21 +41,14 @@ class PostController
 
 //        SQL Injection
 //        $post = $db->fetchAssoc("SELECT * FROM post WHERE id = ?", [$id]);
-        $post = $this->db->fetchAssoc("
-    SELECT * FROM post
-    WHERE 1
-    AND id = :id
-    AND published = 1
-    ", [
-            "id"=>$id,
-        ]);
+        $post = $this->db->fetchAssoc("SELECT * FROM post WHERE id = :id AND published = 1", ["id"=>$id]);
         if (!$post) {
             $this->app->abort(404,"Post ID:$id not found");
         }
 
 //var_dump($post);
         /** @var \Twig_Environment $twig */
-        $twig = $app['twig'];
+        $twig = $this->app['twig'];
         return $twig->render('post/show.twig', array(
             'post' => $post,
         ));

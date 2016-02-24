@@ -4,6 +4,8 @@ namespace Controller\Admin;
 
 use Doctrine\DBAL\Connection;
 use Silex\Application as App;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class PostController {
     /** @var Connection $db */
@@ -29,7 +31,17 @@ class PostController {
         ));
     }
     public function editAction($id){
+        
+        $post = $this->db->fetchAssoc('SELECT * FROM post WHERE id = ?',[$id]);
 
-        die("Edit $id");
+        return $this->twig->render('/admin/post/edit.twig', array(
+            'post' => $post,
+        ));
+    }
+
+    public function editFormAction(Request $request){
+//$c = $this->app->;
+//        return new Response($c,201);
+        die("Edit Form Action");
     }
 }
