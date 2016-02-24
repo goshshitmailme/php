@@ -1,7 +1,8 @@
 {% extends 'layout.twig' %}
 {% block content %}
     <h1>Edit post ID: {{ post.id }}</h1>
-    <form action="{{ path('admin_post_edit_form') }}" method="post">
+    {#<form action="{{ path('admin_post_edit_form') }}" method="post">#}
+    <form action="" method="post">
         <input name="published" type="checkbox" {% if post.published %}checked{% endif %}>Published<br>
         <p>Heading:<br>
             <input name="heading" type="text" value="{{ post.heading }}">

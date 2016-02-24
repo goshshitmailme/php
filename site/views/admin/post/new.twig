@@ -1,0 +1,17 @@
+{% extends 'layout.twig' %}
+{% block content %}
+    <h1>Edit post ID:</h1>
+    <form action="" method="post">
+        <input name="published" type="checkbox" >Published<br>
+        <p>Heading:<br>
+            <input name="heading" type="text" value="">
+        </p>
+        <p>Content:<br>
+            <textarea name="content" id="" cols="30" rows="10"></textarea>
+        </p>
+        <p>Date:<br>
+            <input name="created_at" type="text" value="{{ 'now'|date('Y-m-d H:i:s') }}">
+        </p>
+        <input type="submit" value="Submit"><input type="reset" value="Reset">
+    </form>
+{% endblock %}

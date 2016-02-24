@@ -1,5 +1,6 @@
 {% extends 'layout.twig' %}
 {% block content %}
+    <a href="{{ path('admin_post_new') }}">New</a>
     <h1>ADMIN BLOG</h1>
     {% for p in posts %}
         {#{{ parent() }}#}

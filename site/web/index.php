@@ -3,7 +3,15 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 //require_once __DIR__.'/../src/Controller/PostController.php';
-require_once __DIR__.'/../parameters.php';
+
+define('PARAMETER_PATH','/../parameters.php');
+
+if (is_file(__DIR__ . PARAMETER_PATH)) {
+    require_once __DIR__. PARAMETER_PATH;
+} else {
+    throw new RuntimeException('Parameters file not found');
+    die('Parameters file not fount');
+}
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,11 +58,13 @@ $app->get('/admin/blog', 'admin.post.controller:indexAction')
 
 $app->get('/admin/edit/{id}', 'admin.post.controller:editAction')
     ->assert('id','[0-9]+')
-    ->bind('admin_post_edit');
+    ->bind('admin_post_edit')
+    ->method('GET|POST')
+;
 
-$app->post('/admin/edit/form/', 'admin.post.controller:editFormAction')
-    ->bind('admin_post_edit_form')
-    ->method('POST');
+$app->post('/admin/blog/new/', 'admin.post.controller:newAction')
+    ->bind('admin_post_new')
+    ->method('GET|POST');
 
 $app->run();
 
